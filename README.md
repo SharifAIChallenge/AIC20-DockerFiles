@@ -1,1 +1,2 @@
-# AIC17-Dockerfiles
+# Docker
+Dockerization of the final server is done here.

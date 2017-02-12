@@ -1,0 +1,68 @@
+version: '3'
+services:
+	server:
+	    image: aic17_server_image
+	    volumes:
+	      - {{ server_game_config }}:/game/config.zip:ro
+	    environment:
+	      - client1_id={{ client1_id }}
+	      - client1_token={{ client1_token }}
+	      - client2_id={{ client2_id }}
+	      - client2_token={{ client2_token }}
+	      - logger_token={{ logger_token }}
+	    
+	    deploy:
+	    	resources:
+	    		limits:
+	    			cpus: '0.5'
+	    			memory: '1G'
+
+	logger:
+        image: aic17_logger_image
+	    depends_on:
+	      - server 
+	    volumes:
+	      - {{ logger_log_root }}:/log:rw
+	    environment:
+	      - token={{ logger_token }}
+	    
+	    deploy:
+	    	resources:
+	    		limits:
+	    			cpus: '0.5'
+	    			memory: '1G'
+
+
+	client1:
+		image: aic17_client_image
+		volumes:
+			- {{ client1_code }}:/game/client.zip:ro
+		depends_on:
+			- server
+		environment:
+			- token={{ client1_token }}
+			
+		deploy:
+		  	resources:
+		  		limits:
+		  			cpus: '1'
+		  			memory: '1G'
+		  			
+
+	client2:
+		image: aic17_client_image
+		volumes:
+			- {{ client2_code }}:/game/client.zip:ro
+		depends_on:
+			- server
+		environment:
+			- token={{ client2_token }}
+			
+		deploy:
+		  	resources:
+		  		limits:
+		  			cpus: '1'
+		  			memory: '1G'
+
+
+	

@@ -12,5 +12,6 @@ RUN groupadd -r compiler --gid=2016 && useradd -M -s /bin/bash -R / compiler -u 
 
 COPY compile_code /compile_code
 COPY utils /utils
+COPY libs /libs
 
 CMD python3.5 compile_code/compile.py

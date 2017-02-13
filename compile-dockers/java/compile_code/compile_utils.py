@@ -56,7 +56,7 @@ def compile_java(src):
 
     try:
         subprocess.check_output('javac -Xlint:unchecked -classpath \'' +
-            src + ':' + src + '/src:' + src + '/libs/gson-2.3.1.jar\' ' +
+            src + ':' + src + '/src:' + '/libs/gson-2.3.1.jar\' ' +
             src + '/src/client/Main.java', stderr=subprocess.STDOUT, shell=True)
     except subprocess.CalledProcessError as failed:
         raise Exception('Compile failed with message: %s.' % failed.output.decode('utf-8'))

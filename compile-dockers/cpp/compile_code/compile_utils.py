@@ -58,7 +58,7 @@ def compile_cpp(src):
     subprocess.call(['make', 'clean'])
     
     try:
-        out = subprocess.check_output(['make', '-s'], stderr=subprocess.STDOUT, shell=True)
+        out = subprocess.check_output(['make', '-s', '-f', 'Makefile_linux' ], stderr=subprocess.STDOUT, shell=True)
     except subprocess.CalledProcessError as failed:
         print(failed.output)
         raise Exception('Compile failed with message: %s.' % failed.output.decode('utf-8'))

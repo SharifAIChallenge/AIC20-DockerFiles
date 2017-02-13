@@ -1,8 +1,8 @@
 version: '3'
 services:
     compile:
-          image: aic17_{{ language }}_image
-          volumes:
+        image: aic17_{{ language }}_image
+        volumes:
            - {{ code_zip }}:/compile/code.zip:ro
            - {{ code_compiled_zip }}:/compile/compiled/compiled.zip:rw
            - {{ code_log }}:/compile/log/status.log:rw

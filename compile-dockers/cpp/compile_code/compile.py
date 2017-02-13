@@ -10,6 +10,7 @@ source_dir = root_dir + '/code.zip'
 unzipped_dir = root_dir + '/unzipped'
 compile_dir = root_dir + '/compiled/code/src'
 log_dir = root_dir + '/log'
+work_dir = root_dir + '/compiled/code'
 
 errors = []
 stage = -1
@@ -22,7 +23,9 @@ try:
 
     # remove existing compilation results
     stage = 1
-    shutil.rmtree(compile_dir, ignore_errors=True)
+    shutil.rmtree( work_dir , ignore_errors=True)
+
+    os.makedirs(work_dir)
 
     # find main.cpp and copy the root
     stage = 2
@@ -31,7 +34,7 @@ try:
     # compile
 
     current_uid = os.geteuid()
-    compile_utils.recursively_change_owner(compile_dir, 2016)
+    compile_utils.recursively_change_owner(work_dir, 2016)
     os.seteuid(2016)
 
     stage = 3
@@ -43,12 +46,12 @@ try:
 
     # make archive
     stage = 4
-    shutil.copy2( '/utils/run.sh' , '/compiled/code/' )
-    shutil.make_archive(root_dir + '/compiled/compiled', 'zip', '/compiled/code/')
+    shutil.copy2( '/utils/run.sh' , work_dir )
+    shutil.make_archive(root_dir + '/compiled/compiled', 'zip', work_dir )
 
     # remove compilation results
     stage = 5
-    shutil.rmtree(compile_dir, ignore_errors=True)
+    shutil.rmtree(work_dir, ignore_errors=True)
 
     stage = 6
 
@@ -59,3 +62,5 @@ except Exception as e:
 
 with open(log_dir + '/status.log', 'w') as logfile:
     json.dump({'stage': stage, 'errors': errors}, logfile)
+
+

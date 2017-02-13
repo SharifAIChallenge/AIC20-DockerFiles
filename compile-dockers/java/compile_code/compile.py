@@ -11,6 +11,7 @@ source_dir = root_dir + '/code.zip'
 unzipped_dir = root_dir + '/unzipped'
 compile_dir = root_dir + '/compiled/code/src'
 log_dir = root_dir + '/log'
+work_dir = root_dir + '/compiled/code'
 
 errors = []
 stage = -1
@@ -18,7 +19,8 @@ stage = -1
 try:
     # remove existing compilation results
     stage = 0
-    shutil.rmtree(compile_dir, ignore_errors=True)
+    shutil.rmtree(work_dir, ignore_errors=True)
+    os.makedirs(work_dir)
 
     # copy libs and project files
     stage = 1
@@ -39,7 +41,7 @@ try:
     # compile
     stage = 5
     current_uid = os.geteuid()
-    compile_utils.recursively_change_owner(compile_dir, 2016)
+    compile_utils.recursively_change_owner(work_dir, 2016)
     os.seteuid(2016)
 
     stage = 5
@@ -51,12 +53,12 @@ try:
 
     # make archive
     stage = 6
-    shutil.copy2( '/utils/run.sh' , '/compiled/code/' )
-    shutil.make_archive(root_dir + '/compiled/compiled', 'zip', '/compiled/code/')
+    shutil.copy2( '/utils/run.sh' , work_dir )
+    shutil.make_archive(root_dir + '/compiled/compiled', 'zip', work_dir )
 
     # remove compilation results
     stage = 7
-    shutil.rmtree(compile_dir, ignore_errors=True)
+    shutil.rmtree(work_dir, ignore_errors=True)
 
     stage = 8
 

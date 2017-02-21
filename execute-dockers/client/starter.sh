@@ -9,6 +9,7 @@ unzip client.zip -d client/
 chown -R runner:runner client
 
 cd client
-sudo -E -u runner -s /bin/bash run.sh
+#sudo -E -u runner -s /bin/bash run.sh
+/bin/bash run.sh
 
 echo 'Client terminated.'

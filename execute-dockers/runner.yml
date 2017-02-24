@@ -5,10 +5,10 @@ services:
         volumes:
           - {{ server_game_config }}:/game/config.zip:ro
         environment:
-          - client1_id={{ client1_id }}
-          - client1_token={{ client1_token }}
-          - client2_id={{ client2_id }}
-          - client2_token={{ client2_token }}
+          - client0_id={{ client1_id }}
+          - client0_token={{ client1_token }}
+          - client1_id={{ client2_id }}
+          - client1_token={{ client2_token }}
           - logger_token={{ logger_token }}
         
         deploy:

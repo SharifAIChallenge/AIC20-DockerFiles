@@ -22,7 +22,8 @@ services:
         depends_on:
           - server 
         volumes:
-          - {{ logger_log_root }}:/log:rw
+          - {{ game_log }}:/log/game.log:rw
+          - {{ game_score }}:/log/game.scr:rw
         environment:
           - token={{ logger_token }}
         

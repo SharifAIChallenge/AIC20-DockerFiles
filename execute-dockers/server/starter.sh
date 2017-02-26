@@ -3,11 +3,12 @@ export AICClient0Token=$client0_token
 export AICClient1Name=$client1_id
 export AICClient1Token=$client1_token
 export AICUIToken=$logger_token
+TIMELIMIT=360
 
 echo 'unzip'
 unzip config.zip -d config/
 
 echo 'running'
-java -jar server.jar --config=server.conf
+timeout $TIMELIMIT java -jar server.jar --config=server.conf
 
 echo 'Server terminated'

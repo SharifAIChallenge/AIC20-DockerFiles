@@ -40,6 +40,7 @@ services:
             - {{ client1_code }}:/game/client.zip:ro
         depends_on:
             - server
+            - logger
         environment:
             - token={{ client1_token }}
             
@@ -56,6 +57,7 @@ services:
             - {{ client2_code }}:/game/client.zip:ro
         depends_on:
             - server
+            - logger
         environment:
             - token={{ client2_token }}
             

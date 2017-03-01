@@ -4,7 +4,7 @@ FROM ubuntu
 COPY unzip.deb /unzip.deb
 RUN dpkg -i /unzip.deb
 RUN apt-get update
-RUN apt-get install -y sudo openjdk-8-jre-headless 
+RUN apt-get install -y sudo openjdk-8-jre-headless python3.5
 
 # Copy starter
 COPY starter.sh /game/starter.sh

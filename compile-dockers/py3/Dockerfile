@@ -1,10 +1,9 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 RUN apt-get update && apt-get install -y \
 	software-properties-common \
 	python-software-properties
 
-RUN add-apt-repository ppa:fkrull/deadsnakes
 RUN apt-get update && apt-get install -y \
 	python3.5
 

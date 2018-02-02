@@ -4,7 +4,8 @@ RUN apt-get update && apt-get install -y \
 	build-essential \
 	make \
 	software-properties-common \
-	python-software-properties
+	python-software-properties \
+	cmake
 
 RUN apt-get update && apt-get install -y \
 	python3.5

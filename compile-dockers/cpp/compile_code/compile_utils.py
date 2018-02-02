@@ -3,6 +3,7 @@ import os, glob
 import subprocess
 import shutil
 
+
 def unzip(src, dest):
     """extracts zip file from source dierctory to destination directory.
 
@@ -53,15 +54,17 @@ def compile_cpp(src):
         :param src: source directory containing cpp code.
     """
     # Copy our oun Make to directory
-    #shutil.copyfile('/utils/Makefile', src + '/Makefile')
     os.chdir(src)
+    subprocess.call(['cmake', '.'])
     subprocess.call(['make', 'clean'])
     
     try:
-        out = subprocess.check_output(['make', '-s', '-f', 'Makefile_linux' ], stderr=subprocess.STDOUT, shell=True)
+        out = subprocess.check_output(['make', '-s'], stderr=subprocess.STDOUT,
+                                      shell=True)
     except subprocess.CalledProcessError as failed:
         print(failed.output)
-        raise Exception('Compile failed with message: %s.' % failed.output.decode('utf-8'))
+        raise Exception('Compile failed with message: %s.' %
+                        failed.output.decode('utf-8'))
 
 
 def recursively_change_owner(dir, new_owner):

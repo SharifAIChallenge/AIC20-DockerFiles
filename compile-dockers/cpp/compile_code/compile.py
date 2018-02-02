@@ -16,7 +16,6 @@ errors = []
 stage = -1
 
 try:
-
     # unzip the code
     stage = 0
     compile_utils.unzip(source_dir, unzipped_dir)
@@ -24,15 +23,13 @@ try:
     # remove existing compilation results
     stage = 1
     shutil.rmtree( work_dir , ignore_errors=True)
-
     os.makedirs(work_dir)
 
     # find main.cpp and copy the root
     stage = 2
-    compile_utils.copy_from_root(unzipped_dir, compile_dir, 'main.cpp', -1)
+    compile_utils.copy_from_root(unzipped_dir, compile_dir, 'jsoncpp', -1)
 
     # compile
-
     current_uid = os.geteuid()
     compile_utils.recursively_change_owner(work_dir, 2016)
     os.seteuid(2016)
@@ -56,11 +53,8 @@ try:
     stage = 6
 
 except Exception as e:
-
     errors = e.args
 
 
 with open(log_dir + '/status.log', 'w') as logfile:
     json.dump({'stage': stage, 'errors': errors}, logfile)
-
-

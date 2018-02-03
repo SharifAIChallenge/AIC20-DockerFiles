@@ -1,7 +1,7 @@
 version: '3'
 services:
     server:
-        image: aic17_server_image
+        image: aic_server_image
         volumes:
           - {{ server_game_config }}:/game/config.zip:ro
         environment:
@@ -18,7 +18,7 @@ services:
                     memory: '1G'
 
     logger:
-        image: aic17_logger_image
+        image: aic_logger_image
         depends_on:
           - server 
         volumes:
@@ -35,7 +35,7 @@ services:
 
 
     client1:
-        image: aic17_client_image
+        image: aic_client_image
         volumes:
             - {{ client1_code }}:/game/client.zip:ro
         depends_on:
@@ -52,7 +52,7 @@ services:
                       
 
     client2:
-        image: aic17_client_image
+        image: aic_client_image
         volumes:
             - {{ client2_code }}:/game/client.zip:ro
         depends_on:
@@ -66,6 +66,3 @@ services:
                   limits:
                       cpus: '1'
                       memory: '1G'
-
-
-    

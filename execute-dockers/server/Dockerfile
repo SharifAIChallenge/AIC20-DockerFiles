@@ -1,7 +1,7 @@
-FROM isuper/java-oracle
+FROM openjdk:8-jre
 
 RUN apt update
-RUN apt install unzip
+RUN apt install unzip openjfx
 
 # Copy server
 COPY server.jar /game/server.jar

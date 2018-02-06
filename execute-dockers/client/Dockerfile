@@ -1,10 +1,8 @@
 FROM ubuntu:16.04
 
 # Install unzip
-COPY unzip.deb /unzip.deb
-RUN dpkg -i /unzip.deb
 RUN apt-get update
-RUN apt-get install -y sudo openjdk-8-jre-headless python3.5
+RUN apt-get install -y sudo openjdk-8-jre-headless python3.5 unzip
 
 # Copy starter
 COPY starter.sh /game/starter.sh

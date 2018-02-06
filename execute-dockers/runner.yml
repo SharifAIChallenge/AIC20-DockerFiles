@@ -4,65 +4,45 @@ services:
         image: aic_server_image
         volumes:
           - {{ server_game_config }}:/game/config.zip:ro
+          - {{ game_log }}:/game/game.txt:rw
         environment:
           - client0_id={{ client1_id }}
           - client0_token={{ client1_token }}
           - client1_id={{ client2_id }}
           - client1_token={{ client2_token }}
-          - logger_token={{ logger_token }}
-        
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.7'
+                    memory: '1G'
         deploy:
             resources:
                 limits:
                     cpus: '0.5'
                     memory: '1G'
-
-    logger:
-        image: aic_logger_image
-        depends_on:
-          - server 
-        volumes:
-          - {{ game_log }}:/log/game.log:rw
-          - {{ game_score }}:/log/game.scr:rw
-        environment:
-          - token={{ logger_token }}
-        
-        deploy:
-            resources:
-                limits:
-                    cpus: '0.5'
-                    memory: '1G'
-
-
     client1:
         image: aic_client_image
         volumes:
             - {{ client1_code }}:/game/client.zip:ro
         depends_on:
             - server
-            - logger
         environment:
             - token={{ client1_token }}
-            
         deploy:
-              resources:
-                  limits:
-                      cpus: '1'
-                      memory: '1G'
-                      
-
+            resources:
+                limits:
+                    cpus: '1'
+                    memory: '1G'
     client2:
         image: aic_client_image
         volumes:
             - {{ client2_code }}:/game/client.zip:ro
         depends_on:
             - server
-            - logger
         environment:
             - token={{ client2_token }}
-            
         deploy:
-              resources:
-                  limits:
-                      cpus: '1'
-                      memory: '1G'
+            resources:
+                limits:
+                    cpus: '1'
+                    memory: '1G'

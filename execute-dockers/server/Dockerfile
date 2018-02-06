@@ -1,8 +1,7 @@
 FROM isuper/java-oracle
 
-# Install unzip
-COPY unzip.deb /unzip.deb
-RUN dpkg -i /unzip.deb
+RUN apt update
+RUN apt install unzip
 
 # Copy server
 COPY server.jar /game/server.jar

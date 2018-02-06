@@ -1,4 +1,3 @@
-import glob
 import shutil
 import json
 import compile_utils
@@ -17,34 +16,30 @@ errors = []
 stage = -1
 
 try:
-    # remove existing compilation results
+    # unzip the code
     stage = 0
+    compile_utils.unzip(source_dir, unzipped_dir)
+
+    # remove existing compilation results
+    stage = 1
     shutil.rmtree(work_dir, ignore_errors=True)
     os.makedirs(work_dir)
 
-    # copy libs and project files
-    stage = 1
-    shutil.copytree(utils_dir + '/AIC16-Client-Java', compile_dir)
-
-    # unzip the code
-    stage = 2
-    compile_utils.unzip(source_dir, unzipped_dir)
-
     # find and copy the root of the client
-    stage = 3
-    copy_done = compile_utils.copy_from_root(unzipped_dir, compile_dir + '/src', 'Controller.java', -2)
+    stage = 2
+    copy_done = compile_utils.copy_from_root(unzipped_dir, compile_dir + '/src',
+                                             'Controller.java', -2)
 
     # remove .class files
-    stage = 4
+    stage = 3
     compile_utils.remove_files_with_extention(compile_dir, '.class')
 
     # compile
-    stage = 5
     current_uid = os.geteuid()
     compile_utils.recursively_change_owner(work_dir, 2016)
     os.seteuid(2016)
 
-    stage = 5
+    stage = 4
     try:
         compile_done = compile_utils.compile_java(compile_dir)
     finally:
@@ -52,15 +47,15 @@ try:
         os.chown(compile_dir, current_uid, current_uid)
 
     # make archive
-    stage = 6
-    shutil.copy2( '/utils/run.sh' , work_dir )
-    shutil.make_archive(root_dir + '/compiled/compiled', 'zip', work_dir )
+    stage = 5
+    shutil.copy2('/utils/run.sh', work_dir)
+    shutil.make_archive(root_dir + '/compiled/compiled', 'zip', work_dir)
 
     # remove compilation results
-    stage = 7
+    stage = 6
     shutil.rmtree(work_dir, ignore_errors=True)
 
-    stage = 8
+    stage = 7
 
 except Exception as e:
 

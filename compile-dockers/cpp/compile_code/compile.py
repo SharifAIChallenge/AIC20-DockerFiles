@@ -1,4 +1,3 @@
-import glob
 import shutil
 import json
 import compile_utils
@@ -22,7 +21,7 @@ try:
 
     # remove existing compilation results
     stage = 1
-    shutil.rmtree( work_dir , ignore_errors=True)
+    shutil.rmtree(work_dir, ignore_errors=True)
     os.makedirs(work_dir)
 
     # find main.cpp and copy the root
@@ -43,8 +42,8 @@ try:
 
     # make archive
     stage = 4
-    shutil.copy2( '/utils/run.sh' , work_dir )
-    shutil.make_archive(root_dir + '/compiled/compiled', 'zip', work_dir )
+    shutil.copy2('/utils/run.sh', work_dir)
+    shutil.make_archive(root_dir + '/compiled/compiled', 'zip', work_dir)
 
     # remove compilation results
     stage = 5

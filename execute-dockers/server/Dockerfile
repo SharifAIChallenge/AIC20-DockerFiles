@@ -1,7 +1,7 @@
 FROM openjdk:8-jre
 
 RUN apt update
-RUN apt install unzip openjfx
+RUN apt install unzip openjfx -y
 
 # Copy server
 COPY server.jar /game/server.jar

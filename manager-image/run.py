@@ -81,19 +81,18 @@ if __name__ == "__main__":
 
     logger.info("All services finished")
 
-    logger.info("----- Services Log -----")
+    '''logger.info("----- Services Log -----")
 
     services = client.services.list(filters={"name": manager_uid + "_"})
     buffer = ""
     for service in services:
-        result = subprocess.Popen("docker service logs {}".format(service.id).split(),
-                                  stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        result = subprocess.Popen("docker service logs {}".format(service.id).split(), stderr=subprocess.PIPE)
         out, err = result.communicate()
         buffer = "{}Srvice {}-{}-{}\n\n{}\n\n\n".format(buffer, service.name, service.id, service.short_id,
-                                                 out)
+                                                 err.decode("utf-8"))
     logger.info(buffer)
 	
-    logger.info("***** Services Log *****")
+    logger.info("***** Services Log *****")'''
 
 
     logger.info("Cleaning up")

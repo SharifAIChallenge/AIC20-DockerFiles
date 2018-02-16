@@ -1,11 +1,11 @@
-FROM isuper/java-oracle
+FROM openjdk:8-jdk
 
-RUN apt-get update && apt-get install -y \
-	software-properties-common \
-	python-software-properties
+RUN apt update && apt install -y \
+	software-properties-common
 
-RUN apt-get update && apt-get install -y \
-	python3.5
+RUN apt update && apt install -y \
+        python3.5 \
+        openjfx
 
 RUN groupadd -r compiler --gid=2016 && useradd -M -s /bin/bash -R / compiler -u 2016 -g compiler
 

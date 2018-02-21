@@ -52,6 +52,7 @@ if __name__ == "__main__":
     logger.info("Number of services: {}".format(str(len(services))))
 
     subprocess.call(["docker", "stack", "deploy", "-c", final_file_path,  manager_uid])
+    time.sleep(15)
 
     # FIXME: Currently API doesn't support stacks. The following code assumes
     # that all objects related to a stack have a label com.docker.stack.namespace=<stack_name>

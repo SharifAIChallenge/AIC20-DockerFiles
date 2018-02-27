@@ -58,9 +58,8 @@ if __name__ == "__main__":
     # that all objects related to a stack have a label com.docker.stack.namespace=<stack_name>
     # This is the current assumption of Docker CLI.
     while len(client.api.tasks(
-            filters={"label": "com.docker.stack.namespace={}".format(manager_uid),
-                     "desired-state": "running"
-                     })) < len(services):
+            filters={"label": "com.docker.stack.namespace={}".format(manager_uid)}
+    )) < len(services):
         time.sleep(0.5)
 
     logger.info("All services have been created")

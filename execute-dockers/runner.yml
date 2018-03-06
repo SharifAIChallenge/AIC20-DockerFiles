@@ -5,6 +5,7 @@ services:
         volumes:
           - {{ server_game_config }}:/game/config.zip:ro
           - {{ game_log }}:/game/Game.txt:rw
+          - {{ server_log }}:/game/Server.txt:rw
         environment:
           - client0_id={{ client1_id }}
           - client0_token={{ client1_token }}
@@ -24,6 +25,7 @@ services:
         image: aic_client_image
         volumes:
             - {{ client1_code }}:/game/client.zip:ro
+            - {{ client1_log }}:/game/Client.txt:rw
         depends_on:
             - server
         environment:
@@ -37,6 +39,7 @@ services:
         image: aic_client_image
         volumes:
             - {{ client2_code }}:/game/client.zip:ro
+            - {{ client2_log }}:/game/Client.txt:rw
         depends_on:
             - server
         environment:

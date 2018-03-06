@@ -8,6 +8,6 @@ echo 'unzip'
 unzip config.zip -d config/
 
 echo 'running'
-timeout $TIMELIMIT java -jar server.jar --config=server.conf
+timeout $TIMELIMIT java -jar server.jar --config=server.conf > /game/Server.txt 2>&1
 
 echo 'Server terminated'

@@ -41,7 +41,8 @@ if __name__ == "__main__":
         if 'deploy' not in service:
             service['deploy'] = {}
         service['deploy']['placement'] = {}
-        service['deploy']['placement']['constraints'] = ['node.id == ' + node_id]
+        service['deploy']['placement']['constraints'] = [
+            'node.id == ' + node_id]
         service['deploy']['restart_policy'] = {}
         service['deploy']['restart_policy']['condition'] = 'none'
 
@@ -51,14 +52,16 @@ if __name__ == "__main__":
 
     logger.info("Number of services: {}".format(str(len(services))))
 
-    subprocess.call(["docker", "stack", "deploy", "-c", final_file_path,  manager_uid])
+    subprocess.call(
+        ["docker", "stack", "deploy", "-c", final_file_path, manager_uid])
     time.sleep(15)
 
     # FIXME: Currently API doesn't support stacks. The following code assumes
     # that all objects related to a stack have a label com.docker.stack.namespace=<stack_name>
     # This is the current assumption of Docker CLI.
     while len(client.api.tasks(
-            filters={"label": "com.docker.stack.namespace={}".format(manager_uid)}
+            filters={
+                "label": "com.docker.stack.namespace={}".format(manager_uid)}
     )) < len(services):
         time.sleep(0.5)
 
@@ -92,9 +95,7 @@ if __name__ == "__main__":
         buffer = "{}Srvice {}-{}-{}\n\n{}\n\n\n".format(buffer, service.name, service.id, service.short_id,
                                                  err.decode("utf-8"))
     logger.info(buffer)
-	
     logger.info("***** Services Log *****")'''
-
 
     logger.info("Cleaning up")
 

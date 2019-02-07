@@ -3,8 +3,9 @@ services:
     server:
         image: aic_server_image
         volumes:
+          - {{ graphic_log }}:/game/graphic.log:rw
           - {{ server_game_config }}:/game/config.zip:ro
-          - {{ game_log }}:/game/Game.txt:rw
+          - {{ server_log }}:/game/server_view.log:rw
         environment:
           - client0_id={{ client1_id }}
           - client0_token={{ client1_token }}

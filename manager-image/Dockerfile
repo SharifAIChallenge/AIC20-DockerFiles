@@ -11,4 +11,4 @@ RUN pip3 install PyYAML docker-compose docker
 
 ADD run.py /run.py
 
-CMD [ "/usr/bin/python3.5" , "/run.py" ]
+CMD [ "/usr/bin/python3" , "/run.py" ]

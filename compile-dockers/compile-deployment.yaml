@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.17.0 (a74acad)
+  labels:
+    io.kompose.service: compile
+  name: compile
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: compile
+    spec:
+      containers:
+      - image: aic_py3_image
+        name: compile
+        resources:
+          limits:
+            cpu: 500m
+            memory: "314572800"
+        volumeMounts:
+        - mountPath: /compile/code.zip
+          name: code-zip
+          readOnly: true
+        - mountPath: /compile/compiled/compiled.zip
+          name: code-compiled-zip
+        - mountPath: /compile/log/status.log
+          name: code-log
+      restartPolicy: Always
+      volumes:
+      - name: code-zip
+        persistentVolumeClaim:
+          claimName: code-zip
+          readOnly: true
+      - name: code-compiled-zip
+        persistentVolumeClaim:
+          claimName: code-compiled-zip
+      - name: code-log
+        persistentVolumeClaim:
+          claimName: code-log
+status: {}

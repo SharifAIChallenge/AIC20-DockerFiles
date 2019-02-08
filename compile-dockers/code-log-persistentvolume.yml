@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: code-log
+  labels:
+    pv: code-log
+spec:
+  capacity:
+    storage: 5Gi
+  storageClassName: slow
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /nfs
+    server: 51.77.244.77

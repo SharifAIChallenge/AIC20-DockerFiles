@@ -9,8 +9,10 @@ services:
         environment:
           - client0_id={{ client1_id }}
           - client0_token={{ client1_token }}
+          - client0_name={{ client1_name }}
           - client1_id={{ client2_id }}
           - client1_token={{ client2_token }}
+          - client1_name={{ client2_name }}
         deploy:
             resources:
                 limits:

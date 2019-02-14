@@ -1,6 +1,8 @@
 FROM ubuntu:16.04
 
 # Install unzip
+RUN apt-get update && apt-get install software-properties-common
+RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update
 RUN apt-get install -y sudo openjdk-8-jre-headless python3.7 unzip
 

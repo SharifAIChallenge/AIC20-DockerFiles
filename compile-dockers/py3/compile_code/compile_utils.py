@@ -1,11 +1,8 @@
 import zipfile
-import sys
-import os, glob
+import os
+import glob
 import shutil
 import py_compile
-import compileall
-import io
-from contextlib import redirect_stdout
 
 
 def unzip(src, dest):

@@ -11,6 +11,7 @@ echo 'render server.comg'
 sed -e "s/TEAMNAME0/$client0_name/g" \
     -e "s/TEAMNAME1/$client1_name/g" \
     /game/server.template.conf > /game/server.conf
+cat /game/server.conf
 
 echo 'running'
 timeout $TIMELIMIT java -jar server.jar --config=server.conf

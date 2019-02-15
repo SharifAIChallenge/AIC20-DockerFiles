@@ -4,6 +4,7 @@ old_get = os.environ.get
 
 def new_get(key, *args, **kwargs):
 	value = old_get(key, *args, **kwargs)
+	print("Env: ", key, value)
 	if key == 'AICHostPort':
 		return int(value)
 	else:

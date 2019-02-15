@@ -16,11 +16,6 @@ services:
         deploy:
             resources:
                 limits:
-                    cpus: '0.7'
-                    memory: '1G'
-        deploy:
-            resources:
-                limits:
                     cpus: '0.5'
                     memory: '1G'
     client1:

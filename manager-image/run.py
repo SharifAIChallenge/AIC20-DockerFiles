@@ -47,7 +47,7 @@ if __name__ == "__main__":
         service['deploy']['restart_policy']['condition'] = 'none'
 
     final_file_path = os.path.join(WORKING_DIR, 'docker-compose-final.yml')
-    with open(final_file_path, 'w') as f:
+    with open(final_file_path, 'w', encoding='UTF-8') as f:
         f.write(serialize_config(config))
 
     logger.info("Number of services: {}".format(str(len(services))))

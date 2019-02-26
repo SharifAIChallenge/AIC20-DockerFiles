@@ -6,6 +6,7 @@ services:
           - {{ graphic_log }}:/game/graphic.log:rw
           - {{ server_game_config }}:/game/config.zip:ro
           - {{ server_log }}:/game/server_view.log:rw
+          - {{ server_debug }}:/game/debug.log:rw
         environment:
           - client0_id={{ client1_id }}
           - client0_token={{ client1_token }}
@@ -16,8 +17,8 @@ services:
         deploy:
             resources:
                 limits:
-                    cpus: '0.5'
-                    memory: '1G'
+                    cpus: '1'
+                    memory: '3G'
     client1:
         image: aic_client_image
         volumes:

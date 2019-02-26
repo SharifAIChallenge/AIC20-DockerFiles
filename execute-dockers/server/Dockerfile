@@ -13,4 +13,4 @@ EXPOSE 7000
 EXPOSE 7099
 
 # Starter
-CMD cd game && /bin/bash starter.sh
+CMD cd game && /bin/bash starter.sh | tee -a /game/debug.log

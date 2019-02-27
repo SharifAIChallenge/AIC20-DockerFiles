@@ -23,6 +23,7 @@ services:
         image: aic_client_image
         volumes:
             - {{ client1_code }}:/game/client.zip:ro
+            - {{ client1_log }}:/game/clinet.log
         depends_on:
             - server
         environment:
@@ -36,6 +37,7 @@ services:
         image: aic_client_image
         volumes:
             - {{ client2_code }}:/game/client.zip:ro
+            - {{ client2_log }}:/game/clinet.log
         depends_on:
             - server
         environment:

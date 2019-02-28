@@ -2,7 +2,6 @@ export AICClient0Name=$client0_id
 export AICClient0Token=$client0_token
 export AICClient1Name=$client1_id
 export AICClient1Token=$client1_token
-TIMELIMIT=660
 
 echo 'unzip'
 unzip config.zip -d config/
@@ -14,6 +13,6 @@ sed -e "s/TEAMNAME0/$client0_name/g" \
 cat /game/server.conf
 
 echo 'running'
-timeout $TIMELIMIT java -jar server.jar --config=server.conf
+java -jar server.jar --config=server.conf
 
 echo 'Server terminated'

@@ -16,5 +16,6 @@ ADD libs /libs
 # Add runner user
 RUN groupadd -r runner --gid=2016 && useradd -M -s /bin/bash -R / runner -u 2016 -g runner
 
+WORKDIR /game
 # Run starter
-CMD cd game && /bin/bash starter.sh
+CMD /bin/bash starter.sh

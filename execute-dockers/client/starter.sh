@@ -10,6 +10,6 @@ chown -R runner:runner client
 
 cd client
 #sudo -E -u runner -s /bin/bash run.sh
-/bin/bash run.sh
+/bin/bash run.sh 2>&1 | tail -c 10000000 | tee -a /game/client.log
 
 echo 'Client terminated.'

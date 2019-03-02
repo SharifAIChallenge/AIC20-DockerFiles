@@ -12,5 +12,6 @@ COPY starter.sh /game/starter.sh
 EXPOSE 7000
 EXPOSE 7099
 
+WORKDIR /game
 # Starter
-CMD cd game && /bin/bash starter.sh 2>&1 | tee -a /game/debug.log
+CMD /bin/bash starter.sh 2>&1 | tee -a /game/debug.log

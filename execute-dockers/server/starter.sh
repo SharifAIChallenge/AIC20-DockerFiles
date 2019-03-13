@@ -9,6 +9,7 @@ unzip config.zip -d config/
 echo 'render server.comg'
 sed -e "s/TEAMNAME0/$client0_name/g" \
     -e "s/TEAMNAME1/$client1_name/g" \
+    -e "s/MAPNAME/$map_name/g" \
     /game/server.template.conf > /game/server.conf
 cat /game/server.conf
 

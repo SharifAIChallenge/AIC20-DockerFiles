@@ -31,7 +31,7 @@ try:
     # find and copy the root of the client
     stage = 2
     print("Stage {}: {}".format(stage, "find and copy the root of the client"))
-    compile_utils.copy_from_root(unzipped_dir, compile_dir, 'Controller.py', -1)
+    compile_utils.copy_from_root(unzipped_dir, compile_dir, 'controller.py', -1)
 
     # compile (syntax check)
     stage = 3

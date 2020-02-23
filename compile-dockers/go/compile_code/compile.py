@@ -28,13 +28,10 @@ try:
     # find and copy the root of the client
     stage = 2
     copy_done = compile_utils.copy_from_root(unzipped_dir, compile_dir + '/src',
-                                             'Controller.java', -2)
-    from time import sleep
-    sleep(60)
-
+                                             'controller.go', -2)
     # remove .class files
     stage = 3
-    compile_utils.remove_files_with_extention(compile_dir, '.class')
+    compile_utils.remove_files_with_extention(compile_dir, '.o')
 
     # compile
     current_uid = os.geteuid()
@@ -43,7 +40,7 @@ try:
 
     stage = 4
     try:
-        compile_done = compile_utils.compile_java(compile_dir)
+        compile_done = compile_utils.compile_go(compile_dir)
     finally:
         os.seteuid(current_uid)
         os.chown(compile_dir, current_uid, current_uid)

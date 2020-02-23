@@ -14,6 +14,12 @@ services:
           - client1_id={{ client2_id }}
           - client1_token={{ client2_token }}
           - client1_name={{ client2_name }}
+          - client2_id={{ client3_id }}
+          - client2_token={{ client3_token }}
+          - client2_name={{ client3_name }}
+          - client3_id={{ client4_id }}
+          - client3_token={{ client4_token }}
+          - client3_name={{ client4_name }}
         deploy:
             resources:
                 limits:
@@ -42,6 +48,34 @@ services:
             - server
         environment:
             - token={{ client2_token }}
+        deploy:
+            resources:
+                limits:
+                    cpus: '1'
+                    memory: '1G'
+    client3:
+        image: aic_client_image
+        volumes:
+            - {{ client3_code }}:/game/client.zip:ro
+            - {{ client3_log }}:/game/clinet.log
+        depends_on:
+            - server
+        environment:
+            - token={{ client3_token }}
+        deploy:
+            resources:
+                limits:
+                    cpus: '1'
+                    memory: '1G'
+    client4:
+        image: aic_client_image
+        volumes:
+            - {{ client4_code }}:/game/client.zip:ro
+            - {{ client4_log }}:/game/clinet.log
+        depends_on:
+            - server
+        environment:
+            - token={{ client4_token }}
         deploy:
             resources:
                 limits:

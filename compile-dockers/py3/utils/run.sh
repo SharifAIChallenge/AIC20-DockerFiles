@@ -1,4 +1,4 @@
 cd src 
-sudo -E -u runner -s python3.5 '#FixClient.py'
+sudo -E -u runner -s python3.7 'controller.py'
 
 echo 'Client terminated.'

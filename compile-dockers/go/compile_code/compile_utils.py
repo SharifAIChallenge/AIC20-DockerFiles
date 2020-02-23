@@ -48,20 +48,22 @@ def remove_files_with_extention(src, extention):
         os.remove(extfile)
 
 
-def compile_java(src):
-    """compile java code in directory.
+def compile_go(src):
+    """compile go code in directory.
 
-        :param src: source directory containing java code.
+        :param src: source directory containing go code.
     """
 
     try:
-        subprocess.check_output('javac -Xlint:unchecked -classpath \'' +
-            src + ':' + src + '/src:' + '/libs/gson-2.3.1.jar\' ' +
-            src + '/src/Client/Main.java', stderr=subprocess.STDOUT, shell=True)
+        subprocess.check_output('go build ' +
+            '-o ' + src + '/src/client/main ' +
+            src + '/src/client/main.go ' +
+            src + '/src/client/network.go ' +
+            src + '/src/client/controller.go ' +
+            src + '/src/client/ai.go', stderr=subprocess.STDOUT, shell=True)
     except subprocess.CalledProcessError as failed:
         raise Exception('Compile failed with message: %s.' % failed.output.decode('utf-8'))
     from time import sleep
-    sleep(60)
 
 
 def recursively_change_owner(dir, new_owner):

@@ -4,8 +4,6 @@ RUN apt update
 RUN apt install unzip openjfx -y
 
 # Copy server
-COPY server.jar /game/server.jar
-COPY server.template.conf /game/server.template.conf
 COPY starter.sh /game/starter.sh
 
 # Expose UI & clients port

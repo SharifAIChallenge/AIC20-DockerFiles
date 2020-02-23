@@ -26,7 +26,7 @@ try:
 
     # find main.cpp and copy the root
     stage = 2
-    compile_utils.copy_from_root(unzipped_dir, compile_dir, 'jsoncpp', -1)
+    compile_utils.copy_from_root(unzipped_dir, compile_dir, 'CMakeLists.txt', -1)
 
     # compile
     current_uid = os.geteuid()

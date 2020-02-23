@@ -1,16 +1,19 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 # Install unzip
 RUN apt-get update && apt-get -y install software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update
-RUN apt-get install -y sudo openjdk-8-jre-headless python3.5 unzip
+RUN apt-get install -y sudo openjdk-8-jre-headless python3.7 unzip
 RUN apt-get install -y python3-pip
-RUN pip3 install numpy
+
+# Copy requirements
+RUN pip3 install pip --upgrade
+COPY requirements.txt /utils/requirements.txt
+RUN pip3 install -r /utils/requirements.txt
 
 # Copy starter
 COPY starter.sh /game/starter.sh
-COPY '#FixClient.py' '/game/client/src/#FixClient.py'
 ADD libs /libs
 
 # Add runner user

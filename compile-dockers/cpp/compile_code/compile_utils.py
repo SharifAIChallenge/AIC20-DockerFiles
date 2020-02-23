@@ -56,15 +56,18 @@ def compile_cpp(src):
     # Copy our oun Make to directory
     os.chdir(src)
     subprocess.call(['cmake', '.'])
+    print(1, flush=True)
     subprocess.call(['make', 'clean'])
+    print(2, flush=True)
     
     try:
-        out = subprocess.check_output(['make', '-s'], stderr=subprocess.STDOUT,
+        out = subprocess.check_output(['make', 'VERBOSE=1'], stderr=subprocess.STDOUT,
                                       shell=True)
     except subprocess.CalledProcessError as failed:
         print(failed.output)
         raise Exception('Compile failed with message: %s.' %
                         failed.output.decode('utf-8'))
+    print(3, flush=True)
 
 
 def recursively_change_owner(dir, new_owner):

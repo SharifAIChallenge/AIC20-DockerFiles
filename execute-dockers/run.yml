@@ -3,9 +3,11 @@ services:
     server:
         image: aic_server_image
         volumes:
+          - {{ server_jar }}:/game/server.jar:ro
+          - {{ server_conf }}:/game/server.conf:ro
           - {{ graphic_log }}:/game/graphic.log:rw
           - {{ server_game_config }}:/game/config.zip:ro
-          - {{ server_log }}:/game/server_view.log:rw
+          - {{ server_log }}:/game/server_log.json:rw
           - {{ server_debug }}:/game/debug.log:rw
         environment:
           - client0_id={{ client1_id }}
@@ -29,7 +31,7 @@ services:
         image: aic_client_image
         volumes:
             - {{ client1_code }}:/game/client.zip:ro
-            - {{ client1_log }}:/game/clinet.log
+            - {{ client1_log }}:/game/client.log:rw
         depends_on:
             - server
         environment:
@@ -43,7 +45,7 @@ services:
         image: aic_client_image
         volumes:
             - {{ client2_code }}:/game/client.zip:ro
-            - {{ client2_log }}:/game/clinet.log
+            - {{ client2_log }}:/game/client.log:rw
         depends_on:
             - server
         environment:
@@ -57,7 +59,7 @@ services:
         image: aic_client_image
         volumes:
             - {{ client3_code }}:/game/client.zip:ro
-            - {{ client3_log }}:/game/clinet.log
+            - {{ client3_log }}:/game/client.log:rw
         depends_on:
             - server
         environment:
@@ -71,7 +73,7 @@ services:
         image: aic_client_image
         volumes:
             - {{ client4_code }}:/game/client.zip:ro
-            - {{ client4_log }}:/game/clinet.log
+            - {{ client4_log }}:/game/client.log:rw
         depends_on:
             - server
         environment:

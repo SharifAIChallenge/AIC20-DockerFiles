@@ -9,6 +9,7 @@ unzip client.zip -d client/
 chown -R runner:runner client
 
 cd client
-bash run.sh 2>&1 | tail -c 10000000 | tee -a /game/client.log
+bash run.sh 2>&1 | tee -a /game/client.log
+cat /game/client.log | tail -c 10000000 > /game/client.log
 
 echo 'Client terminated.'

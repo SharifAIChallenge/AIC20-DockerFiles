@@ -1,4 +1,4 @@
-# Config run
+# Config Run
 #### Config run images for AIC_GameRunner
 
 in AIC_GameRunner admin:

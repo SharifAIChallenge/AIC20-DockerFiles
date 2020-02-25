@@ -31,15 +31,21 @@ push images with command:
 docker push example.com/aic_****_image
 ```
 
-## Add image usage to [AIC_GameRunner]()
+## Add image usage to [AIC_GameRunner](https://github.com/SharifAIChallenge/AIC_GameRunner)
 
-Use current [database dump]()
+Use current [database dump](game_dump.json) using command:
+```
+./manage.py loaddata game_dump.json
+```
+And finally change exmaple.com
+
+
 or manually:
 
 [Config Manager](MANAGER.md)
 
 [Config Compile](COMPILE.md)
 
-[Config Compile](RUN.md)
+[Config Run](RUN.md)
 
 

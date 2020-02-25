@@ -20,9 +20,6 @@ unzip config.zip -d config/
 echo 'running'
 java -jar server.jar --config=server.conf
 
-ls
-ls Log
-cat Log/graphic*.json
 cp Log/graphic*.json graphic.log
 
 echo 'Server terminated'

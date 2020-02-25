@@ -10,7 +10,6 @@ chown -R runner:runner client
 
 cd client
 bash run.sh 2>&1 | tee -a /game/client.tmp.log
-tail client.tmp.log -c 10000000 > /game/client.log
-cat /game/client.log
+tail /game/client.tmp.log -c 10000000 > /game/client.log
 
 echo 'Client terminated.'

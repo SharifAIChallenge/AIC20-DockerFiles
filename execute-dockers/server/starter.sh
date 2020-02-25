@@ -22,6 +22,7 @@ java -jar server.jar --config=server.conf
 
 ls
 ls Log
-mv Log/graphic*.json graphic.log
+cat Log/graphic*.json
+cp Log/graphic*.json graphic.log
 
 echo 'Server terminated'

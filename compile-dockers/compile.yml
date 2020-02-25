@@ -1,7 +1,7 @@
 version: '3'
 services:
     compile:
-        image: aic_{{ language }}_image
+        image: example.com/aic_{{ language }}_image
         volumes:
            - {{ code_zip }}:/compile/code.zip:ro
            - {{ code_compiled_zip }}:/compile/compiled/compiled.zip:rw

@@ -1,7 +1,7 @@
 version: '3'
 services:
     server:
-        image: aic_server_image
+        image: example.com/aic_server_image
         volumes:
           - {{ server_jar }}:/game/server.jar:ro
           - {{ server_conf }}:/game/server.conf:ro
@@ -26,9 +26,9 @@ services:
             resources:
                 limits:
                     cpus: '1'
-                    memory: '3G'
+                    memory: '1G'
     client1:
-        image: aic_client_image
+        image: example.com/aic_client_image
         volumes:
             - {{ client1_code }}:/game/client.zip:ro
             - {{ client1_log }}:/game/client.log:rw
@@ -42,7 +42,7 @@ services:
                     cpus: '1'
                     memory: '1G'
     client2:
-        image: aic_client_image
+        image: example.com/aic_client_image
         volumes:
             - {{ client2_code }}:/game/client.zip:ro
             - {{ client2_log }}:/game/client.log:rw
@@ -56,7 +56,7 @@ services:
                     cpus: '1'
                     memory: '1G'
     client3:
-        image: aic_client_image
+        image: example.com/aic_client_image
         volumes:
             - {{ client3_code }}:/game/client.zip:ro
             - {{ client3_log }}:/game/client.log:rw
@@ -70,7 +70,7 @@ services:
                     cpus: '1'
                     memory: '1G'
     client4:
-        image: aic_client_image
+        image: example.com/aic_client_image
         volumes:
             - {{ client4_code }}:/game/client.zip:ro
             - {{ client4_log }}:/game/client.log:rw

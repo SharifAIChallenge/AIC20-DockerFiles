@@ -3,12 +3,12 @@ Dockerfiles to build images for AIC20
 
 # How to use aic images
 
-You can use ansible playbooks written in :
+You can use ansible playbooks written in: [AIC-GameRunnerManager](https://github.com/SharifAIChallenge/AIC-GameRunnerManager)
 
 But manually:
 (Change all example.com to master ip)
 
-### build images
+### Build images
 
 build images with commands bellow:
 ```
@@ -31,7 +31,7 @@ push images with command:
 docker push example.com/aic_****_image
 ```
 
-## Add image usage to [AIC_GameRunner](https://github.com/SharifAIChallenge/AIC_GameRunner)
+## Add image usage to [AIC-GameRunner](https://github.com/SharifAIChallenge/AIC-GameRunner)
 
 Use current [database dump](game_dump.json) using command:
 ```

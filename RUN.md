@@ -1,7 +1,7 @@
 # Config Run
-#### Config run images for AIC_GameRunner
+#### Config run images for AIC-GameRunner
 
-in AIC_GameRunner admin:
+in AIC-GameRunner admin:
 
 Add new operation in  
 `Home › Game › Operations`

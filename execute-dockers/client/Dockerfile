@@ -14,12 +14,11 @@ RUN pip3 install -r /utils/requirements.txt
 
 # Copy starter
 COPY starter.sh /game/starter.sh
+RUN touch /game/client.log
 ADD libs /libs
 
 # Add runner user
 RUN groupadd -r runner --gid=2016 && useradd -M -s /bin/bash -R / runner -u 2016 -g runner
-RUN touch /game/client.log
-RUN chown runner:runner /game/client.log
 
 WORKDIR /game
 # Run starter

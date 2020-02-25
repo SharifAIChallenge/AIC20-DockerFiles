@@ -7,6 +7,7 @@ export AICRetryDelay=5000
 unzip client.zip -d client/
 
 chown -R runner:runner client
+chown runner:runner /game/client.log
 
 cd client
 sudo -E -u runner -s sh -c '/bin/bash run.sh 2>&1 | tail -c 10000000 | tee -a /game/client.log'

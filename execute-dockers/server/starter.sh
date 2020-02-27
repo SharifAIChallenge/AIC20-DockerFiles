@@ -8,7 +8,7 @@ export AICTeamName1=$client1_name
 
 export AICClient2Name=$client2_id
 export AICClient2Token=$client2_token
-export AICTeamName1=$client1_name
+export AICTeamName2=$client2_name
 
 export AICClient3Name=$client3_id
 export AICClient3Token=$client3_token
